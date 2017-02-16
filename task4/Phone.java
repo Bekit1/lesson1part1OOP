@@ -2,9 +2,9 @@ package task4;
 
 public class Phone {
 	private int number;
-	private String network;
+	private Network network;
 
-	public Phone(int number, String network) {
+	public Phone(int number, Network network) {
 		super();
 		this.number = number;
 		this.network = network;
@@ -22,24 +22,34 @@ public class Phone {
 		this.number = number;
 	}
 
-	public String getNetwork() {
+	public Network getNetwork() {
 		return network;
 	}
 
-	public void setNetwork(String network) {
+	public void setNetwork(Network network) {
 		this.network = network;
 	}
 
-	public void registerInNetwork(Phone phone, Network network) {
-		this.network = network.getName();
+	public void registerInNetwork(Network network) {
+		this.network = network;
+		network.addToLibrary(this);
+
 	}
 
-	public void call(Phone p1, Phone p2) {
-		if (p1.getNetwork().equalsIgnoreCase(p2.getNetwork()) == true) {
-			System.out.println("You are calling to " + p2.getNumber() + " please wait");
-		} else {
-			System.out.println("You are calling wrong number. Please, check your number");
+	public void call(int number) {
+		int exist = 0;
+		for (int i = 0; i < network.getNumbers().length; i++) {
+
+			if (network.getNumbers()[i] == number) {
+				exist++;
+			}
 		}
+		if (exist > 0) {
+			System.out.println("You are calling to " + number);
+		} else {
+			System.out.println("Wrong number");
+		}
+
 	}
 
 	@Override

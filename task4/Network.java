@@ -46,16 +46,25 @@ public class Network {
 		this.name = name;
 	}
 
-	public void addToLibrary(Phone phone, Network network) {
-		amount++;
-		int[] a = Arrays.copyOf(numbers, amount+ 1);
-		network.setNumbers(a);
+	public void addToLibrary(Phone phone) {
+		int[] a = Arrays.copyOf(numbers, amount + 1);
+		numbers = a;
 		numbers[amount] = phone.getNumber();
+		amount++;
 	}
 
-	public void createNetwork(Network network) {
+	public void createNetwork() {
 		int[] a = new int[amount];
-		network.setNumbers(a);
+		numbers = a;
+	}
+
+	public void checkNumber(int number) {
+		int exist = 0;
+		for (int i = 0; i < numbers.length; i++) {
+			if (numbers[i] == number) {
+				exist++;
+			}
+		}
 	}
 
 	@Override
